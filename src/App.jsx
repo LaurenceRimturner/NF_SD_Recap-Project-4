@@ -7,7 +7,6 @@ import { uid } from "uid";
 
 function App() {
   const [colorsArray, setColorsArray] = useState(initialColors);
-  const [confirmMessage, setconfirmMessage] = useState("");
 
   function handleAddColor(newColor) {
     setColorsArray([
@@ -25,7 +24,6 @@ function App() {
   function handleDeleteColor(id) {
     setColorsArray(colorsArray.filter((color) => color.id !== id));
   }
-
   return (
     <>
       <h1>Theme Creator</h1>
@@ -41,6 +39,9 @@ function App() {
           onDeleteColor={handleDeleteColor}
         />
       ))}
+      <h3>
+        {colorsArray.length === 0 ? "No colors.. start by adding one!" : ""}
+      </h3>
     </>
   );
 }
