@@ -1,5 +1,7 @@
 import "./Color.css";
 
+
+
 export default function Color({ hexColor, role, contrastText }) {
   return (
     <article
