@@ -1,16 +1,15 @@
 import "./App.css";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/ColorForm/ColorForm";
-import ColorInput from "./Components/ColorInput/ColorInput";
 import { initialColors } from "./lib/colors";
 import { useState } from "react";
 import { uid } from "uid";
 
 function App() {
-  const [colors, setColors] = useState(initialColors);
+  const [colorsArray, setColorsArray] = useState(initialColors);
 
   function handleAddColor(newColor) {
-    setColors([
+    setColorsArray([
       {
         id: uid(),
         hexColor: newColor.hexColorInput,
@@ -18,23 +17,31 @@ function App() {
         contrastText: newColor.contrastTextInput,
         ...newColor,
       },
-      ...colors,
+      ...colorsArray,
     ]);
-    console.log(newColor);
   }
 
+  function handleDeleteColor(id) {
+    setColorsArray(colorsArray.filter((color) => color.id !== id));
+  }
   return (
     <>
       <h1>Theme Creator</h1>
+
       <ColorForm onAddColor={handleAddColor} />
-      {colors.map((color) => (
+      {colorsArray.map((color) => (
         <Color
           key={color.id}
+          id={color.id}
           hexColor={color.hex}
           role={color.role}
           contrastText={color.contrastText}
-        ></Color>
+          onDeleteColor={handleDeleteColor}
+        />
       ))}
+      <h3>
+        {colorsArray.length === 0 ? "No colors.. start by adding one!" : ""}
+      </h3>
     </>
   );
 }
