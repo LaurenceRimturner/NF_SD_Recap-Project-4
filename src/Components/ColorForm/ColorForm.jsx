@@ -1,15 +1,16 @@
 import "./ColorForm.css";
 import ColorInput from "../ColorInput/ColorInput.jsx";
+import SubmitButton from "../SubmitButton.jsx";
 
 export default function ColorPicker({
-  onAddColor,
+  onSubmit,
   initialData = { role: "some color", hex: "#123456", contrastText: "#ffffff" },
 }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    onAddColor(data);
+    onSubmit(data);
   }
 
   return (
@@ -32,8 +33,7 @@ export default function ColorPicker({
         Contrast Text <br />
         <ColorInput id="contrastText" defaultValue={initialData.contrastText} />
       </label>
-      <div></div>
-      <button type="submit">ADD COLOR</button>
+      <SubmitButton />
     </form>
   );
 }

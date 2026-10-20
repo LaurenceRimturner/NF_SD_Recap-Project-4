@@ -24,11 +24,26 @@ function App() {
   function handleDeleteColor(id) {
     setColorsArray(colorsArray.filter((color) => color.id !== id));
   }
+
+  function handleEditColor(id, newData) {
+    setColorsArray(
+      colorsArray.map((color) =>
+        color.id === id
+          ? {
+              id: color.id,
+              role: newData.role,
+              hex: newData.hex,
+              contrastText: newData.contrastText,
+            }
+          : color,
+      ),
+    );
+  }
   return (
     <>
       <h1>Theme Creator</h1>
 
-      <ColorForm onAddColor={handleAddColor} />
+      <ColorForm onSubmit={handleAddColor} />
       {colorsArray.map((color) => (
         <Color
           key={color.id}
@@ -37,6 +52,7 @@ function App() {
           role={color.role}
           contrastText={color.contrastText}
           onDeleteColor={handleDeleteColor}
+          onEditColor={handleEditColor}
         />
       ))}
       <h3>
