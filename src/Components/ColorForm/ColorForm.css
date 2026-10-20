@@ -13,7 +13,14 @@ form button {
   width: fit-content;
 }
 
-.Btn__delete {
+.Btn__delete,
+.Btn__reset {
   color: white;
   background-color: var(--del-red);
+}
+
+.Btn__reset {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
 }
