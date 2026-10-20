@@ -2,11 +2,17 @@ import "./App.css";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/ColorForm/ColorForm";
 import { initialColors } from "./lib/colors";
-import { useState } from "react";
+// import { useState } from "react";
 import { uid } from "uid";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [colorsArray, setColorsArray] = useState(initialColors);
+  const [colorsArray, setColorsArray, { removeItem, isPersistent }] =
+    useLocalStorageState("colorsArray", {
+      defaultValue: initialColors,
+    });
+
+  // const [colorsArray, setColorsArray] = useState(initialColors);
 
   function handleAddColor(newColor) {
     setColorsArray([
@@ -32,7 +38,9 @@ function App() {
       ),
     );
   }
-
+  function handleResetColor() {
+    removeItem();
+  }
   return (
     <>
       <h1>Theme Creator</h1>
@@ -48,9 +56,19 @@ function App() {
             contrastText={color.contrastText}
             onDeleteColor={handleDeleteColor}
             handleEditColor={handleEditColor}
+            {...(!isPersistent && (
+              <span>Changes arent currently persisted.</span>
+            ))}
           />
         ))}
       </div>
+      <button
+        type="button"
+        className="Btn__reset"
+        onClick={() => handleResetColor()}
+      >
+        COLOR PALETTE RESET
+      </button>
       <h3>
         {colorsArray.length === 0 ? "No colors.. start by adding one!" : ""}
       </h3>
