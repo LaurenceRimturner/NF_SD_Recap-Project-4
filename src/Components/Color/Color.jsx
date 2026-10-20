@@ -12,18 +12,19 @@ export default function Color({
 }) {
   const [isEditing, setisEditing] = useState(false);
   const [confirmMessage, setconfirmMessage] = useState(false);
-  const [copyColorValue, setcopyColorValue] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
 
-  async function CopyColorValue(text) {
+  async function CopyToClipboard(color) {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(color);
+      setIsCopied(true);
     } catch (error) {
       console.error(error.message);
     }
   }
 
   useEffect(() => {
-    const id = setInterval(CopyColorValue, 5000);
+    const id = setInterval(() => setIsCopied(false), 3000);
     return () => {
       clearInterval(id);
     };
@@ -39,8 +40,8 @@ export default function Color({
       className="color-card"
     >
       <h3 className="color-card-highlight">{hexColor}</h3>
-      <button type="button" onClick={() => CopyColorValue()}>
-        COPY
+      <button type="button" onClick={() => CopyToClipboard(hexColor)}>
+        {!isCopied ? "COPY" : "SUCCESFULLY COPIED!"}
       </button>
       <p>
         <b>{role}</b>
