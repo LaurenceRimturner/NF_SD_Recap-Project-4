@@ -1,7 +1,6 @@
 import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm.jsx";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Color({
   hexColor,
@@ -13,13 +12,36 @@ export default function Color({
 }) {
   const [isEditing, setisEditing] = useState(false);
   const [confirmMessage, setconfirmMessage] = useState(false);
+  const [copyColorValue, setcopyColorValue] = useState("");
+
+  async function CopyColorValue(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    const id = setInterval(CopyColorValue, 5000);
+    return () => {
+      clearInterval(id);
+    };
+  }, []);
 
   return (
     <article
-      style={{ backgroundColor: hexColor, color: contrastText }}
+      style={{
+        backgroundColor: hexColor,
+        color: contrastText,
+        boxShadow: `0 0 8px ${hexColor}`,
+      }}
       className="color-card"
     >
       <h3 className="color-card-highlight">{hexColor}</h3>
+      <button type="button" onClick={() => CopyColorValue()}>
+        COPY
+      </button>
       <p>
         <b>{role}</b>
       </p>
