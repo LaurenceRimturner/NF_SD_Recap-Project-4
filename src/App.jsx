@@ -44,17 +44,19 @@ function App() {
       <h1>Theme Creator</h1>
 
       <ColorForm onSubmit={handleAddColor} />
-      {colorsArray.map((color) => (
-        <Color
-          key={color.id}
-          id={color.id}
-          hexColor={color.hex}
-          role={color.role}
-          contrastText={color.contrastText}
-          onDeleteColor={handleDeleteColor}
-          onEditColor={handleEditColor}
-        />
-      ))}
+      <div className="colorContainer">
+        {colorsArray.map((color) => (
+          <Color
+            key={color.id}
+            id={color.id}
+            hexColor={color.hex}
+            role={color.role}
+            contrastText={color.contrastText}
+            onDeleteColor={handleDeleteColor}
+            onEditColor={handleEditColor}
+          />
+        ))}
+      </div>
       <h3>
         {colorsArray.length === 0 ? "No colors.. start by adding one!" : ""}
       </h3>

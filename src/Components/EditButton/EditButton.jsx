@@ -20,10 +20,19 @@ export default function EditButton({ id, onEditColor, initialData }) {
   }
 
   return (
-    <ColorForm
-      onSubmit={handleSubmit}
-      initialData={initialData}
-      SubmitContent="UPDATE COLOR"
-    />
+    <>
+      <ColorForm
+        onSubmit={handleSubmit}
+        initialData={initialData}
+        SubmitContent="UPDATE COLOR"
+      />
+      <button
+        className="Btn Btn__cancle"
+        type="button"
+        onClick={() => setEditMode(false)}
+      >
+        CANCLE
+      </button>
+    </>
   );
 }

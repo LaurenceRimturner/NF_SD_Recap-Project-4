@@ -8,7 +8,7 @@ export default function DeleteButton({ onDeleteColor, id }) {
     return (
       <button
         type="button"
-        className="Btn Btn__delete"
+        className="Btn__delete"
         onClick={() => setconfirmMessage(true)}
       >
         DELETE
@@ -20,14 +20,14 @@ export default function DeleteButton({ onDeleteColor, id }) {
     <>
       <p className="color-card-highlight">Really delete?</p>
       <button
-        className="Btn Btn__cancle"
+        className="Btn__cancle"
         type="button"
         onClick={() => setconfirmMessage(false)}
       >
         CANCLE
       </button>
       <button
-        className="Btn Btn__delete"
+        className="Btn__delete"
         type="button"
         onClick={() => onDeleteColor(id)}
       >
