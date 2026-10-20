@@ -12,3 +12,8 @@ form div {
 form button {
   width: fit-content;
 }
+
+.Btn__delete {
+  color: white;
+  background-color: var(--del-red);
+}

@@ -12,7 +12,7 @@ function App() {
     setColorsArray([
       {
         id: uid(),
-        hexColor: newColor.hexColorInput,
+        hex: newColor.hexColorInput,
         role: newColor.role,
         contrastText: newColor.contrastTextInput,
         ...newColor,
@@ -24,21 +24,33 @@ function App() {
   function handleDeleteColor(id) {
     setColorsArray(colorsArray.filter((color) => color.id !== id));
   }
+
+  function handleEditColor(updatedColor) {
+    setColorsArray(
+      colorsArray.map((color) =>
+        color.id === updatedColor.id ? { ...color, ...updatedColor } : color,
+      ),
+    );
+  }
+
   return (
     <>
       <h1>Theme Creator</h1>
 
-      <ColorForm onAddColor={handleAddColor} />
-      {colorsArray.map((color) => (
-        <Color
-          key={color.id}
-          id={color.id}
-          hexColor={color.hex}
-          role={color.role}
-          contrastText={color.contrastText}
-          onDeleteColor={handleDeleteColor}
-        />
-      ))}
+      <ColorForm onSubmit={handleAddColor} btnText="ADD COLOR" />
+      <div className="colorContainer">
+        {colorsArray.map((color) => (
+          <Color
+            key={color.id}
+            id={color.id}
+            hexColor={color.hex}
+            role={color.role}
+            contrastText={color.contrastText}
+            onDeleteColor={handleDeleteColor}
+            handleEditColor={handleEditColor}
+          />
+        ))}
+      </div>
       <h3>
         {colorsArray.length === 0 ? "No colors.. start by adding one!" : ""}
       </h3>
