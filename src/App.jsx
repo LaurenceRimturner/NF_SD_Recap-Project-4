@@ -25,25 +25,19 @@ function App() {
     setColorsArray(colorsArray.filter((color) => color.id !== id));
   }
 
-  function handleEditColor(id, newData) {
+  function handleEditColor(updatedColor) {
     setColorsArray(
       colorsArray.map((color) =>
-        color.id === id
-          ? {
-              id: color.id,
-              role: newData.role,
-              hex: newData.hex,
-              contrastText: newData.contrastText,
-            }
-          : color,
+        color.id === updatedColor.id ? { ...color, ...updatedColor } : color,
       ),
     );
   }
+
   return (
     <>
       <h1>Theme Creator</h1>
 
-      <ColorForm onSubmit={handleAddColor} />
+      <ColorForm onSubmit={handleAddColor} btnText="ADD COLOR" />
       <div className="colorContainer">
         {colorsArray.map((color) => (
           <Color
@@ -53,7 +47,7 @@ function App() {
             role={color.role}
             contrastText={color.contrastText}
             onDeleteColor={handleDeleteColor}
-            onEditColor={handleEditColor}
+            handleEditColor={handleEditColor}
           />
         ))}
       </div>
