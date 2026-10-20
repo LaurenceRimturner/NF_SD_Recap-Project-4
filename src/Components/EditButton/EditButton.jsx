@@ -19,5 +19,11 @@ export default function EditButton({ id, onEditColor, initialData }) {
     );
   }
 
-  return <ColorForm onSubmit={handleSubmit} initialData={initialData} />;
+  return (
+    <ColorForm
+      onSubmit={handleSubmit}
+      initialData={initialData}
+      SubmitContent="UPDATE COLOR"
+    />
+  );
 }

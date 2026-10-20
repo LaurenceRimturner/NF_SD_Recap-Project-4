@@ -12,7 +12,7 @@ function App() {
     setColorsArray([
       {
         id: uid(),
-        hexColor: newColor.hexColorInput,
+        hex: newColor.hexColorInput,
         role: newColor.role,
         contrastText: newColor.contrastTextInput,
         ...newColor,
