@@ -1,7 +1,6 @@
 import "./Color.css";
 import ColorForm from "../ColorForm/ColorForm.jsx";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Color({
   hexColor,
@@ -13,18 +12,42 @@ export default function Color({
 }) {
   const [isEditing, setisEditing] = useState(false);
   const [confirmMessage, setconfirmMessage] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  async function CopyToClipboard(color) {
+    try {
+      await navigator.clipboard.writeText(color);
+      setIsCopied(true);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  useEffect(() => {
+    const id = setInterval(() => setIsCopied(false), 3000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [setIsCopied]);
 
   return (
     <article
-      style={{ backgroundColor: hexColor, color: contrastText }}
+      style={{
+        backgroundColor: hexColor,
+        color: contrastText,
+        boxShadow: `0 0 8px ${hexColor}`,
+      }}
       className="color-card"
     >
       <h3 className="color-card-highlight">{hexColor}</h3>
+      <button type="button" onClick={() => CopyToClipboard(hexColor)}>
+        {isCopied ? "SUCCESFULLY COPIED!" : "COPY"}
+      </button>
       <p>
         <b>{role}</b>
       </p>
       <p>Contrast: {contrastText}</p>
-      <div>
+      <div className="funcBtn">
         {!isEditing && !confirmMessage && (
           <button type="button" onClick={() => setconfirmMessage(true)}>
             DELETE
