@@ -28,7 +28,7 @@ export default function Color({
     return () => {
       clearInterval(id);
     };
-  }, []);
+  }, [setIsCopied]);
 
   return (
     <article
@@ -41,13 +41,13 @@ export default function Color({
     >
       <h3 className="color-card-highlight">{hexColor}</h3>
       <button type="button" onClick={() => CopyToClipboard(hexColor)}>
-        {!isCopied ? "COPY" : "SUCCESFULLY COPIED!"}
+        {isCopied ? "SUCCESFULLY COPIED!" : "COPY"}
       </button>
       <p>
         <b>{role}</b>
       </p>
       <p>Contrast: {contrastText}</p>
-      <div>
+      <div className="funcBtn">
         {!isEditing && !confirmMessage && (
           <button type="button" onClick={() => setconfirmMessage(true)}>
             DELETE

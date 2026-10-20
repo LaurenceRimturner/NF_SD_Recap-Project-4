@@ -13,17 +13,27 @@ body {
 
 .colorContainer {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
 }
 .colorContainer article {
-  width: 250px;
-  height: 250px;
-  min-height: 100%;
+  width: 30%;
+  gap: 1rem;
   border-radius: 4px;
   display: flex;
   justify-content: start;
-  align-items: center;
+}
+.colorContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 1rem;
+
+}
+
+.funcBtn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 /*GENERAL BTN */

@@ -1,8 +1,10 @@
 form,
 form div {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.3rem;
 }
 
 form div {
