@@ -8,8 +8,8 @@
 .color-card-highlight {
   display: inline;
   padding: 2px 6px;
-  background: black;
-  color: white;
+  background: var(--main-black);
+  color: var(--main-white);
   width: fit-content;
   font-weight: 900;
   letter-spacing: 1px;

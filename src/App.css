@@ -1,14 +1,18 @@
 :root {
-  --del-red: rgb(250, 15, 15);
+  --main-white: #e6e6e6;
+  --main-black: #16161d;
+  --red: rgb(250, 15, 15);
+  --orange: rgb(248, 119, 33);
+  --green: rgb(77, 185, 77);
 }
 
 body {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   padding: 10px;
-  background-color: #16161d;
+  background-color: var(--main-black);
   max-width: 1400px;
   margin: auto;
-  color: #fff;
+  color: var(--main-white);
 }
 
 .colorContainer {
@@ -18,7 +22,6 @@ body {
 .colorContainer article {
   width: 30%;
   gap: 1rem;
-  border-radius: 4px;
   display: flex;
   justify-content: start;
 }
@@ -27,7 +30,6 @@ body {
   flex-direction: column;
   align-items: start;
   padding: 1rem;
-
 }
 
 .funcBtn {
@@ -38,7 +40,6 @@ body {
 
 /*GENERAL BTN */
 button {
-  border-radius: 4px;
   border: none;
   cursor: pointer;
 }
