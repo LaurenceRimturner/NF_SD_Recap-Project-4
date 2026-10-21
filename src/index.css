@@ -9,6 +9,7 @@ https://www.joshwcomeau.com/css/custom-css-reset/
 *::before,
 *::after {
   box-sizing: border-box;
+  border-radius: 3px;
 }
 /*
   2. Remove default margin

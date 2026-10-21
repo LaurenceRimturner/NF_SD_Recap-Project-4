@@ -1,0 +1,14 @@
+.contrastDiv {
+  color: var(--main-black);
+  padding: 1rem;
+  text-align: center;
+}
+.contrast--success {
+  background-color: var(--green);
+}
+.contrast--warning {
+  background-color: var(--orange);
+}
+.contrast--danger {
+  background-color: var(--red);
+}

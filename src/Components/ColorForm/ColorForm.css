@@ -17,7 +17,7 @@ form button {
 
 .Btn__delete,
 .Btn__reset {
-  color: white;
+  color: var(--main-white);
   background-color: var(--del-red);
 }
 
