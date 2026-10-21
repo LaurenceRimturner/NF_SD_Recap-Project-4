@@ -40,9 +40,7 @@ export default function Color({
       }}
       className="color-card"
     >
-      <p onClick={() => ContrastChecker(contrastText, hexColor)}>
-        ContrastChecker
-      </p>
+      <ContrastChecker hexColor={hexColor} contrastText={contrastText} />
       <h3 className="color-card-highlight">{hexColor}</h3>
       <button type="button" onClick={() => CopyToClipboard(hexColor)}>
         {isCopied ? "SUCCESFULLY COPIED!" : "COPY"}
