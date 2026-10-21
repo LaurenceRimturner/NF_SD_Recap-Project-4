@@ -59,18 +59,18 @@ export default function Color({
           <>
             <p className="color-card-highlight">Really delete?</p>
             <button
-              className="Btn__cancle"
-              type="button"
-              onClick={() => setconfirmMessage(false)}
-            >
-              CANCLE
-            </button>
-            <button
               className="Btn__delete"
               type="button"
               onClick={() => onDeleteColor(id)}
             >
               DELETE
+            </button>
+            <button
+              className="Btn__cancle"
+              type="button"
+              onClick={() => setconfirmMessage(false)}
+            >
+              CANCLE
             </button>
           </>
         )}
@@ -84,7 +84,10 @@ export default function Color({
             <ColorForm
               btnText="UPDATE COLOR"
               initialData={{ role, hexColor, contrastText }}
-              onSubmit={(formValues) => handleEditColor({ id, ...formValues })}
+              onSubmit={(formValues) => {
+                handleEditColor({ id, ...formValues });
+                setisEditing(false);
+              }}
             />
             <button type="button" onClick={() => setisEditing(false)}>
               CANCLE
