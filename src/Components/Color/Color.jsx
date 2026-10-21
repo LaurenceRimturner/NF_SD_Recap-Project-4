@@ -1,11 +1,12 @@
 import "./Color.css";
-import ColorForm from "../ColorForm/ColorForm.jsx";
 import { useState, useEffect } from "react";
+import ColorForm from "../ColorForm/ColorForm.jsx";
+import ContrastChecker from "../ContrastCatcher/ContrastCatcher";
 
 export default function Color({
   hexColor,
-  role,
   contrastText,
+  role,
   onDeleteColor,
   handleEditColor,
   id,
@@ -39,6 +40,9 @@ export default function Color({
       }}
       className="color-card"
     >
+      <p onClick={() => ContrastChecker(contrastText, hexColor)}>
+        ContrastChecker
+      </p>
       <h3 className="color-card-highlight">{hexColor}</h3>
       <button type="button" onClick={() => CopyToClipboard(hexColor)}>
         {isCopied ? "SUCCESFULLY COPIED!" : "COPY"}
