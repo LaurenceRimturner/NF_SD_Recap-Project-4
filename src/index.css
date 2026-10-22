@@ -1,21 +1,30 @@
 /* This is a modern css reset found here:
 https://www.joshwcomeau.com/css/custom-css-reset/
 */
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 /*
   1. Use a more-intuitive box-sizing model.
 */
+
+:root {
+  --main-white: #e6e6e6;
+  --main-black: #16161d;
+  --red: #c62828;
+  --orange: #b35900;
+  --green: #1a7f37;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  border-radius: 3px;
 }
 /*
   2. Remove default margin
 */
 * {
   margin: 0;
+  border-radius: 3px;
 }
 /*
   Typographic tweaks!
@@ -23,6 +32,7 @@ https://www.joshwcomeau.com/css/custom-css-reset/
   4. Improve text rendering
 */
 body {
+  font-family: "Poppins", sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -44,7 +54,7 @@ input,
 button,
 textarea,
 select {
-  font: inherit;
+  font-family: inherit;
 }
 /*
   7. Avoid text overflows

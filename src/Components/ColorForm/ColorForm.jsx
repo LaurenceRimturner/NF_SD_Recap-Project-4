@@ -1,14 +1,17 @@
 import "./ColorForm.css";
 import ColorInput from "../ColorInput/ColorInput.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function ColorForm({
   onSubmit,
   initialData = {
-    role: "some color",
+    role: "Primary Color",
     hexColor: "#123456",
     contrastText: "#ffffff",
   },
   btnText,
+  btnIcon = faPlus,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -37,7 +40,9 @@ export default function ColorForm({
         Contrast Text <br />
         <ColorInput id="contrastText" defaultValue={initialData.contrastText} />
       </label>
-      <button type="submit">{btnText}</button>
+      <button type="submit">
+        {btnText} <FontAwesomeIcon icon={btnIcon} size="lg" />
+      </button>
     </form>
   );
 }

@@ -2,6 +2,11 @@ import "./Color.css";
 import { useState, useEffect } from "react";
 import ColorForm from "../ColorForm/ColorForm.jsx";
 import ContrastChecker from "../ContrastCatcher/ContrastCatcher";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function Color({
   hexColor,
@@ -40,57 +45,76 @@ export default function Color({
       }}
       className="color-card"
     >
-      <ContrastChecker hexColor={hexColor} contrastText={contrastText} />
+      <div className="cardHeader">
+        <ContrastChecker hexColor={hexColor} contrastText={contrastText} />
+        <button
+          type="button"
+          className="copy-btn"
+          aria-label="Copy hex color"
+          onClick={() => CopyToClipboard(hexColor)}
+        >
+          <FontAwesomeIcon icon={faCopy} size="xl" />
+          {isCopied && (
+            <span className="tooltip" role="status">
+              Copied!
+            </span>
+          )}
+        </button>
+      </div>
       <h3 className="color-card-highlight">{hexColor}</h3>
-      <button type="button" onClick={() => CopyToClipboard(hexColor)}>
-        {isCopied ? "SUCCESFULLY COPIED!" : "COPY"}
-      </button>
       <p>
         <b>{role}</b>
       </p>
       <p>Contrast: {contrastText}</p>
-      <div className="funcBtn">
+      <div className="funcBtnContainer">
         {!isEditing && !confirmMessage && (
           <button type="button" onClick={() => setconfirmMessage(true)}>
-            DELETE
+            <FontAwesomeIcon icon={faTrash} size="xl" />
           </button>
         )}
-        {confirmMessage && (
-          <>
-            <p className="color-card-highlight">Really delete?</p>
-            <button
-              className="Btn__cancle"
-              type="button"
-              onClick={() => setconfirmMessage(false)}
-            >
-              CANCLE
+        <div className="formBtn">
+          {" "}
+          {confirmMessage && (
+            <>
+              <p className="color-card-highlight">Really delete?</p>
+              <button
+                className="Btn__cancle"
+                type="button"
+                onClick={() => setconfirmMessage(false)}
+              >
+                CANCLE
+              </button>
+              <button
+                className="Btn__delete"
+                type="button"
+                onClick={() => onDeleteColor(id)}
+              >
+                <FontAwesomeIcon icon={faTrash} size="xl" /> DELETE
+              </button>
+            </>
+          )}
+          {!confirmMessage && (
+            <button type="button" onClick={() => setisEditing(true)}>
+              <FontAwesomeIcon icon={faPenToSquare} size="xl" />{" "}
             </button>
-            <button
-              className="Btn__delete"
-              type="button"
-              onClick={() => onDeleteColor(id)}
-            >
-              DELETE
-            </button>
-          </>
-        )}
-        {!confirmMessage && (
-          <button type="button" onClick={() => setisEditing(true)}>
-            EDIT
-          </button>
-        )}
-        {isEditing && (
-          <>
-            <ColorForm
-              btnText="UPDATE COLOR"
-              initialData={{ role, hexColor, contrastText }}
-              onSubmit={(formValues) => handleEditColor({ id, ...formValues })}
-            />
-            <button type="button" onClick={() => setisEditing(false)}>
-              CANCLE
-            </button>
-          </>
-        )}
+          )}
+          {isEditing && (
+            <>
+              <ColorForm
+                btnText="UPDATE COLOR"
+                btnIcon={faCheck}
+                initialData={{ role, hexColor, contrastText }}
+                onSubmit={(formValues) => {
+                  handleEditColor({ id, ...formValues });
+                  setisEditing(false);
+                }}
+              />
+              <button type="button" onClick={() => setisEditing(false)}>
+                CANCLE
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </article>
   );
