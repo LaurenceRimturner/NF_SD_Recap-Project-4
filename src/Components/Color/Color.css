@@ -15,11 +15,39 @@
   letter-spacing: 1px;
 }
 
-.color-card-button {
-  width: fit-content;
-  padding: 2px 10px;
+.cardHeader {
+  display: flex;
+  gap: 1rem;
+}
+.cardHeader > div {
+  width: 66%;
 }
 
-.color-card p {
-  font-weight: 200;
+.copy-btn {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%; /* oberhalb des Buttons */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #222;
 }

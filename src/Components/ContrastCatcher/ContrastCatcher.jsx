@@ -13,7 +13,6 @@ export default function ContrastChecker({ hexColor, contrastText }) {
 
   if (isLoading) return <div>loading...</div>;
 
-  console.log(data);
   return (
     <div
       className={`contrastDiv ${
@@ -24,8 +23,8 @@ export default function ContrastChecker({ hexColor, contrastText }) {
             : "contrast--danger"
       }`}
     >
-      {" "}
-      {data.ratio >= 4.5 ? "YES" : data.ratio >= 3 ? "KINDA" : "NOPE"}
+      {"Overall contrast is "}
+      {data.ratio >= 4.5 ? "Good" : data.ratio >= 3 ? "Mid" : "Bad"}
     </div>
   );
 }

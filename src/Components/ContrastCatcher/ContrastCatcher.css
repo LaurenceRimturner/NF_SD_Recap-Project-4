@@ -1,7 +1,8 @@
 .contrastDiv {
-  color: var(--main-black);
-  padding: 1rem;
+  color: var(--main-white);
+  padding: 0.5rem 1rem;
   text-align: center;
+  box-shadow: 0 0 10px var(--main-black);
 }
 .contrast--success {
   background-color: var(--green);

@@ -35,13 +35,10 @@ function App() {
       ),
     );
   }
-  function handleResetColor() {
-    removeItem();
-  }
+
   return (
     <>
       <h1>Theme Creator</h1>
-
       <ColorForm onSubmit={handleAddColor} btnText="ADD COLOR" />
       <div className="colorContainer">
         {colorsArray.map((color) => (
@@ -62,7 +59,10 @@ function App() {
       <button
         type="button"
         className="Btn__reset"
-        onClick={() => handleResetColor()}
+        onClick={() => {
+          if (window.confirm("Are you sure to reset the color palette?"))
+            removeItem();
+        }}
       >
         COLOR PALETTE RESET
       </button>
